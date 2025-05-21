@@ -4,11 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS-->
-    <link rel="stylesheet" href="../CSS/Layout.css">
     <link rel="stylesheet" href="../CSS/Index.css">
-    <title>ChefNow - Seu Chef </title>
+    <link rel="stylesheet" href="../CSS/Layout.css">
+    <title>ChefNow - Seu Chef Na Hora</title>
 </head>
-<body>
+    <header>
+        <div class="header-flex">
+            <div class="img"><img src="../ART/ChefNow_Logo.png" alt="Logo ChefNow"></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Botão</a></li>
+                    <li><a href="#">Botão</a></li>
+                    <li><a href="#">Botão</a></li>
+                </ul>
+            </nav>
+            <button class="Login">Criar Conta</button>
+            <button class="login-entrar">Entrar</button>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+</header>
     
+<!-- Menu lateral para mobile -->
+<div class="sidebar" id="sidebar">
+    <button class="sidebar-close" id="sidebar-close">×</button>
+
+    <ul>
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Cardápio</a></li>
+        <li><a href="#">Chefs</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#" class="menu-criar-conta">Criar Conta</a></li>
+        <li><a href="#" class="menu-entrar">Entrar</a></li>
+    </ul>
+</div>
+<body>
+    <!-- Vídeo de fundo -->
+    <div class="background-video">
+        <video autoplay muted loop id="bg-video">
+            <source src="../Vidio/Vidio_desktop.mp4" type="video/mp4">
+        </video>
+        <p style="font-size: 20rem;">Coloasdihsadfaoisdaskjdfgbaskjdgbaskjdgbaskjdgbaslkjdgb</p>
+    </div>
+    
+    <!-- Conteúdo do site aqui -->
+    
+    <script src="../JS/Efeito.js"></script>
+    <script src="../JS/Vidio.js"></script>
 </body>
 </html>

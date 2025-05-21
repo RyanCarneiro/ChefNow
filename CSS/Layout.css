@@ -1,0 +1,222 @@
+/* Cores da paleta */
+:root {
+    --cinza: #6d6b6b;
+    --branco: #f6f4f4;
+    --rosa-claro: #efe4ea;
+    --dourado: #e1c081;
+    --bg-header: #efe4ea;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--branco);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header Estilo Minimalista */
+header {
+    background-color: var(--bg-header);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 0 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.img {
+    display: flex;
+    align-items: center;
+}
+
+.img img {
+    height: 50px;
+    width: auto;
+}
+
+nav {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav ul li a {
+    color: var(--cinza);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Efeito de linha ao passar o mouse */
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--dourado);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--dourado);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Botões de Login */
+button {
+    border: none;
+    border-radius: 4px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Login {
+    background-color: var(--dourado);
+    color: white;
+    margin-right: 0.8rem;
+}
+
+.Login:hover {
+    background-color: #d4b06f;
+}
+
+.login-entrar {
+    background-color: transparent;
+    color: var(--cinza);
+    border: 1px solid var(--cinza);
+}
+
+.login-entrar:hover {
+    border-color: var(--dourado);
+    color: var(--dourado);
+}
+
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--cinza);
+    transition: all 0.3s ease;
+}
+
+/* Menu lateral para dispositivos móveis */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    height: 100vh;
+    width: 280px;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 2000;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--cinza);
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.sidebar ul li a {
+    color: var(--cinza);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    color: var(--dourado);
+}
+
+.menu-criar-conta {
+    color: var(--dourado) !important;
+    font-weight: 600 !important;
+}
+
+.menu-entrar {
+    text-decoration: underline !important;
+}
+
+
+/* Media queries para responsividade */
+@media screen and (max-width: 768px) {
+
+    nav,
+    .Login,
+    .login-entrar {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .header-flex {
+        padding: 0;
+    }
+}
