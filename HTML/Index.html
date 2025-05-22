@@ -43,17 +43,23 @@
     </ul>
 </div>
 <body>
-    <!-- Vídeo de fundo -->
     <div class="background-video">
         <video autoplay muted loop id="bg-video">
             <source src="../Vidio/Vidio_desktop.mp4" type="video/mp4">
         </video>
-        <p style="font-size: 20rem;">Coloasdihsadfaoisdaskjdfgbaskjdgbaskjdgbaskjdgbaslkjdgb</p>
+        <!-- Overlay escuro sobre o vídeo -->
+        <div class="video-overlay"></div>
     </div>
-    
-    <!-- Conteúdo do site aqui -->
-    
-    <script src="../JS/Efeito.js"></script>
-    <script src="../JS/Vidio.js"></script>
+
+    <!-- Conteúdo principal sobre o vídeo -->
+    <main class="hero-content">
+        <h1>Seu Chef na Hora</h1>
+        <p>Descubra os melhores chefs da sua região e saboreie pratos incríveis no conforto da sua casa. Digite seu CEP e encontre experiências culinárias únicas perto de você.</p>
+        
+        <div class="cep-container">
+            <input type="text" class="cep-input" placeholder="Digite seu CEP" maxlength="9">
+            <button class="cep-button">Encontrar Chefs</button>
+        </div>
+    </main>
 </body>
 </html>
