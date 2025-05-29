@@ -169,9 +169,13 @@ button {
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: var(--cinza);
     cursor: pointer;
     margin-bottom: 2rem;
+}
+
+.sidebar-close img {
+    max-width: 35px;
+    height: auto;
 }
 
 .sidebar ul {

@@ -1,3 +1,4 @@
+
 /* Ajuste no vídeo de fundo */
 .background-video {
     position: fixed;
@@ -132,6 +133,15 @@
     text-align: center;
 }
 
+.category-art {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin: 0 auto 2rem auto;
+    object-fit: contain;
+}
+
 .categories-title {
     font-size: 2.5rem;
     color: var(--dourado-escuro);
@@ -237,7 +247,14 @@
     font-weight: bold;
 }
 
+
 /* Responsivo para categorias */
+@media (max-width: 1024px) {
+    .category-art {
+        max-width: 500px;
+    }
+}
+
 @media (max-width: 768px) {
     .categories-section {
         padding: 3rem 1rem;
@@ -260,4 +277,286 @@
         width: 60px;
         height: 60px;
     }
+
+    .category-art {
+        max-width: 400px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-art {
+        max-width: 300px;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .category-art {
+        max-width: 250px;
+    }
+}
+
+/* Seção Melhores Chefs */
+.best-chefs-container {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 2px solid #e9ecef;
+}
+
+.chefs-art {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto 2rem auto;
+    object-fit: contain;
+}
+
+.best-chefs-title {
+    font-size: 2.2rem;
+    color: var(--dourado-escuro);
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.best-chefs-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.chefs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.chef-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3; /* Mais largo que alto */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chef-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--dourado), var(--dourado-escuro));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.chef-card:hover::before {
+    transform: scaleX(1);
+}
+
+.chef-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.chef-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.chef-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--dourado);
+}
+
+.chef-info h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.chef-specialty {
+    color: var(--dourado-escuro);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.chef-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.chef-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chef-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stars {
+    color: #ffc107;
+    font-size: 1rem;
+}
+
+.rating-number {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.chef-price {
+    background: var(--dourado);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Responsivo para chefs */
+@media (max-width: 768px) {
+    .best-chefs-container {
+        margin-top: 3rem;
+        padding-top: 2rem;
+    }
+
+    .best-chefs-title {
+        font-size: 1.8rem;
+    }
+
+    .chefs-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .chef-card {
+        aspect-ratio: 5/3;
+        padding: 1.2rem;
+    }
+
+    .chef-header {
+        gap: 0.8rem;
+    }
+
+    .chef-photo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .chefs-art {
+        max-width: 350px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chef-card {
+        aspect-ratio: 3/2;
+        padding: 1rem;
+    }
+
+    .chef-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .chef-photo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .chefs-art {
+        max-width: 280px;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+.chef-card {
+       aspect-ratio: 1/1;
+       padding: 0.8rem;
+       min-height: auto;
+   }
+
+   .chef-header {
+       flex-direction: row;
+       align-items: center;
+       gap: 0.5rem;
+       margin-bottom: 0.8rem;
+   }
+
+   .chef-photo {
+       width: 40px;
+       height: 40px;
+       flex-shrink: 0;
+   }
+
+   .chef-info h3 {
+       font-size: 1.1rem;
+       line-height: 1.2;
+   }
+
+   .chef-specialty {
+       font-size: 0.8rem;
+   }
+
+   .chef-description {
+       font-size: 0.85rem;
+       line-height: 1.4;
+       margin-bottom: 0.8rem;
+   }
+
+   .chef-footer {
+       flex-direction: column;
+       gap: 0.5rem;
+       align-items: stretch;
+   }
+
+   .chef-rating {
+       justify-content: center;
+   }
+
+   .stars {
+       font-size: 0.9rem;
+   }
+
+   .rating-number {
+       font-size: 0.8rem;
+   }
+
+   .chef-price {
+       text-align: center;
+       padding: 0.3rem 0.8rem;
+       font-size: 0.8rem;
+   }
 }
