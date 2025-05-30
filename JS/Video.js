@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Adiciona uma imagem de fundo em vez do vídeo
         if (backgroundDiv) {
-            backgroundDiv.style.backgroundImage = 'url("../Vidio/Vidio_mobile..mp4")';
+            backgroundDiv.style.backgroundImage = 'url("../Video/Video_mobile..mp4")';
             backgroundDiv.style.backgroundSize = 'cover';
             backgroundDiv.style.backgroundPosition = 'center';
         }
