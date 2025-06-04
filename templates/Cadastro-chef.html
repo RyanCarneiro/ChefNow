@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Layout.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Criar-conta.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Cadastro-chef.css') }}" />
   <link rel="icon" type="image/png" sizes="16x16" href="/ART/favicon-16x16.png" />
   <meta name="theme-color" content="#ffffff" />
   <title>Criar Conta</title>
@@ -57,11 +57,14 @@
     <label for="nascimento">Data de nascimento:</label>
     <input type="date" id="nascimento" name="nascimento" required />
 
+    <label for="nascimento">CEP:</label>
+    <input type="text" id="cep" name="cep" required />
+
     <button type="submit">Cadastrar</button>
   </form>
 
   <div id="mensagem"></div>
 
-  <script src="{{ url_for('static', filename='JS/Criar-conta.js') }}"></script>
+  <script src="{{ url_for('static', filename='JS/Cadastro-chef.js') }}"></script>
 </body>
 </html>
