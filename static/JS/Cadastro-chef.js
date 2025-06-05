@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nascimento = document.getElementById("nascimento").value;
     const cep = document.getElementById("cep").value;
 
-    fetch("/enviar", {
+    fetch("/cadastrar-chef", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--  CSS  -->
-    <link rel="stylesheet" href="../static/CSS/Index.css">
-    <link rel="stylesheet" href="../static/CSS/Layout.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Layout.css') }}">
     <!--  Favicon  -->
     <link rel="icon" type="image/png" sizes="16x16"  href="../static/ART/favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -50,7 +50,7 @@
 <body>
     <div class="background-video">
         <video autoplay muted loop id="bg-video">
-            <source src="../Video/Video_desktop.mp4" type="video/mp4">
+            <source src="../static/video/Video_desktop.mp4" type="video/mp4">
         </video>
         
         <div class="video-overlay"></div>
@@ -66,6 +66,7 @@
             <input type="text" class="cep-input" placeholder="Digite seu CEP" maxlength="9">
             <button class="cep-button">Encontrar Chefs</button>
         </div>
+        <ul class="resultado"></ul>
     </main>
 
     <!-- SEÇÃO DE CATEGORIAS -->
@@ -214,8 +215,9 @@
         </div>
         </div>
     </section>
-    <script src="../static/JS/Video.js"></script>
-    <script src="../static/JS/Efeito.js"></script>
+    <script src="{{ url_for('static', filename='JS/video.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/Efeito.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/Calcular-distancia.js') }}"></script>
 </body>
 
 </html>
