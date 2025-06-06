@@ -10,36 +10,71 @@
   <title>Criar Conta</title>
 </head>
 
-<body>
-  <header>
+<header>
     <div class="header-flex">
-      <div class="img"><img src="{{ url_for('static', filename='ART/ChefNow_Logo.png') }}" alt="Logo ChefNow" /></div>
-      <nav>
-        <ul>
-          <li><a href="#">Início</a></li>
-          <li><a href="#">Chefs</a></li>
-          <li><a href="#">Sobre</a></li>
-        </ul>
-      </nav>
-      <button class="Login">Criar Conta</button>
-      <button class="login-entrar">Entrar</button>
-      <div class="menu-toggle" id="menu-toggle">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </header>
+        <div class="img"><img src="../static/ART/ChefNow_Logo.png" alt="Logo ChefNow"></div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="#">Botão</a></li>
+                <li><a href="#">Botão</a></li>
+                <li><a href="#">Botão</a></li>
+            </ul>
+        </nav>
 
-  <!-- Menu lateral para mobile -->
-  <div class="sidebar" id="sidebar">
-    <button class="sidebar-close" id="sidebar-close"><img src="../static/ART/fechar.png" alt="Fechar" /></button>
+        <!-- Seletor de tipo de usuário -->
+        <div class="user-type-selector">
+            <button class="user-type-btn" id="userTypeBtn">
+                <span id="selectedType">Usuário</span>
+            </button>
+            <div class="user-type-dropdown" id="userTypeDropdown">
+                <div class="user-type-option selected" data-type="usuário">Usuário</div>
+                <div class="user-type-option" data-type="chef">Chef</div>
+            </div>
+        </div>
+
+        <button class="Login" id="createBtn">Criar Conta</button>
+        <button class="login-entrar" id="loginBtn">Entrar</button>
+
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<!-- Menu lateral para mobile -->
+<div class="sidebar" id="sidebar">
+    <button class="sidebar-close" id="sidebar-close"><img src="../static/ART/fechar.png" alt="Fechar"></button>
+
+    <!-- Seletor de tipo de usuário para mobile -->
+    <div class="user-type-selector">
+        <button class="user-type-btn" id="userTypeBtnMobile">
+            <span id="selectedTypeMobile">Usuário</span>
+        </button>
+        <div class="user-type-dropdown" id="userTypeDropdownMobile">
+            <div class="user-type-option selected" data-type="usuário">Usuário</div>
+            <div class="user-type-option" data-type="chef">Chef</div>
+        </div>
+    </div>
+
     <ul>
-      <li><a href="#">Início</a></li><hr />
-      <li><a href="#">Chefs</a></li><hr />
-      <li><a href="#">Sobre</a></li><hr />
-      <li><a href="#" class="menu-criar-conta">Criar Conta</a></li><hr />
-      <li><a href="#" class="menu-entrar">Entrar</a></li><hr />
+        <li><a href="#">Início</a></li>
+        <hr>
+        <li><a href="#">Chefs</a></li>
+        <hr>
+        <li><a href="#">Sobre</a></li>
+        <hr>
+        <li><a href="#" class="menu-criar-conta" id="createBtnMobile">Criar Conta</a></li>
+        <hr>
+        <li><a href="#" class="menu-entrar" id="loginBtnMobile">Entrar</a></li>
+        <hr>
     </ul>
-  </div>
+</div>
+
+<body>
+
   <!--  Formulario  -->
   <form id="formCadastro">
     <label for="name">Nome:</label>

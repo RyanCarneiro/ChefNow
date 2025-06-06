@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Layout.css') }}">
     <!--  Favicon  -->
-    <link rel="icon" type="image/png" sizes="16x16"  href="../static/ART/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/ART/favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <title>ChefNow - Seu Chef Na Hora</title>
@@ -18,14 +18,27 @@
         <div class="img"><img src="../static/ART/ChefNow_Logo.png" alt="Logo ChefNow"></div>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
                 <li><a href="#">Botão</a></li>
                 <li><a href="#">Botão</a></li>
                 <li><a href="#">Botão</a></li>
             </ul>
         </nav>
-        <button class="Login">Criar Conta</button>
-        <button class="login-entrar">Entrar</button>
+
+        <!-- Seletor de tipo de usuário -->
+        <div class="user-type-selector">
+            <button class="user-type-btn" id="userTypeBtn">
+                <span id="selectedType">Usuário</span>
+            </button>
+            <div class="user-type-dropdown" id="userTypeDropdown">
+                <div class="user-type-option selected" data-type="usuário">Usuário</div>
+                <div class="user-type-option" data-type="chef">Chef</div>
+            </div>
+        </div>
+
+        <button class="Login" id="createBtn">Criar Conta</button>
+        <button class="login-entrar" id="loginBtn">Entrar</button>
+
         <div class="menu-toggle" id="menu-toggle">
             <span></span>
             <span></span>
@@ -38,12 +51,28 @@
 <div class="sidebar" id="sidebar">
     <button class="sidebar-close" id="sidebar-close"><img src="../static/ART/fechar.png" alt="Fechar"></button>
 
+    <!-- Seletor de tipo de usuário para mobile -->
+    <div class="user-type-selector">
+        <button class="user-type-btn" id="userTypeBtnMobile">
+            <span id="selectedTypeMobile">Usuário</span>
+        </button>
+        <div class="user-type-dropdown" id="userTypeDropdownMobile">
+            <div class="user-type-option selected" data-type="usuário">Usuário</div>
+            <div class="user-type-option" data-type="chef">Chef</div>
+        </div>
+    </div>
+
     <ul>
-        <li><a href="#">Início</a></li><hr>
-        <li><a href="#">Chefs</a></li><hr>
-        <li><a href="#">Sobre</a></li><hr>
-        <li><a href="#" class="menu-criar-conta">Criar Conta</a></li><hr>
-        <li><a href="#" class="menu-entrar">Entrar</a></li><hr>
+        <li><a href="#">Início</a></li>
+        <hr>
+        <li><a href="#">Chefs</a></li>
+        <hr>
+        <li><a href="#">Sobre</a></li>
+        <hr>
+        <li><a href="#" class="menu-criar-conta" id="createBtnMobile">Criar Conta</a></li>
+        <hr>
+        <li><a href="#" class="menu-entrar" id="loginBtnMobile">Entrar</a></li>
+        <hr>
     </ul>
 </div>
 
@@ -52,7 +81,7 @@
         <video autoplay muted loop id="bg-video">
             <source src="../static/video/Video_desktop.mp4" type="video/mp4">
         </video>
-        
+
         <div class="video-overlay"></div>
     </div>
 
@@ -80,7 +109,8 @@
             <div class="categories-grid">
                 <div class="category-card">
                     <div class="category-count">+ de 25 opções</div>
-                    <div class="category-icon"><img src="../static/ART/Category-Italia.png" alt="Categoria Italiana"></div>
+                    <div class="category-icon"><img src="../static/ART/Category-Italia.png" alt="Categoria Italiana">
+                    </div>
                     <h3 class="category-name">Culinária Italiana</h3>
                     <p class="category-description">Massas artesanais, risottos cremosos e pizzas tradicionais
                         preparadas por chefs especializados</p>
@@ -88,7 +118,8 @@
 
                 <div class="category-card">
                     <div class="category-count">+ de 18 opções</div>
-                    <div class="category-icon"><img src="../static/ART/Category-Japao.png" alt="Categoria Japonesa"></div>
+                    <div class="category-icon"><img src="../static/ART/Category-Japao.png" alt="Categoria Japonesa">
+                    </div>
                     <h3 class="category-name">Culinária Japonesa</h3>
                     <p class="category-description">Sushi fresco, sashimi premium e pratos tradicionais japoneses com
                         ingredientes selecionados</p>
@@ -96,7 +127,8 @@
 
                 <div class="category-card">
                     <div class="category-count">+ de 32 opções</div>
-                    <div class="category-icon"><img src="../static/ART/Category-Brasil.png" alt="Categoria Brasileira"></div>
+                    <div class="category-icon"><img src="../static/ART/Category-Brasil.png" alt="Categoria Brasileira">
+                    </div>
                     <h3 class="category-name">Culinária Brasileira</h3>
                     <p class="category-description">Sabores autênticos do Brasil, de pratos regionais a clássicos
                         nacionais preparados com amor</p>
@@ -104,7 +136,8 @@
 
                 <div class="category-card">
                     <div class="category-count">+ de 20 opções</div>
-                    <div class="category-icon"><img src="../static/ART/Category-Saude.png" alt="Categoria Sauldavel"></div>
+                    <div class="category-icon"><img src="../static/ART/Category-Saude.png" alt="Categoria Sauldavel">
+                    </div>
                     <h3 class="category-name">Comida Saudável</h3>
                     <p class="category-description">Opções nutritivas e saborosas, ideais para quem busca uma
                         alimentação equilibrada</p>
@@ -112,7 +145,8 @@
 
                 <div class="category-card">
                     <div class="category-count">+ de 15 opções</div>
-                    <div class="category-icon"><img src="../static/ART/Category-Confeito.png" alt="Categoria Confeitaria">
+                    <div class="category-icon"><img src="../static/ART/Category-Confeito.png"
+                            alt="Categoria Confeitaria">
                     </div>
                     <h3 class="category-name">Confeitaria</h3>
                     <p class="category-description">Doces artesanais, bolos personalizados e sobremesas únicas para

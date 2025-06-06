@@ -25,6 +25,10 @@ def index():
 def cadastro():
     return render_template('Cadastro-chef.html')
 
+@app.route('/Criar-conta')
+def criar_conta():
+    return render_template('Criar-conta.html')
+
 @app.route('/chefs-proximos')
 def chefs_proximos():
     cep_base = request.args.get('cep')

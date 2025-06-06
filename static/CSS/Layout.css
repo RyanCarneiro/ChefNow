@@ -94,6 +94,89 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+/* Estilização para o dropdown de seleção de tipo de usuário */
+.user-type-selector {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.user-type-btn {
+    background: #ffaf38;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 92.03px;
+    height: 34.19px;
+}
+
+.user-type-btn:hover {
+    background: var(--dourado-escuro);
+}
+
+.user-type-btn::after {
+    content: '▼';
+    font-size: 8px;
+    transition: transform 0.3s ease;
+}
+
+.user-type-btn.active::after {
+    transform: rotate(180deg);
+}
+
+.user-type-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    min-width: 120px;
+    z-index: 1000;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.user-type-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.user-type-option {
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--cinza);
+    font-size: 0.8rem;
+}
+
+.user-type-option:last-child {
+    border-bottom: none;
+}
+
+.user-type-option:hover {
+    background-color: var(--rosa-claro);
+}
+
+.user-type-option.selected {
+    background-color: var(--dourado);
+    color: white;
+}
+
 /* Botões de Login */
 button {
     border: none;
@@ -109,6 +192,7 @@ button {
     background-color: var(--dourado);
     color: white;
     margin-right: 0.8rem;
+    width: 195.59px;
 }
 
 .Login:hover {
@@ -119,13 +203,13 @@ button {
     background-color: transparent;
     color: var(--cinza);
     border: 1px solid var(--cinza);
+    width: 165.09px;
 }
 
 .login-entrar:hover {
     border-color: var(--dourado);
     color: var(--dourado);
 }
-
 
 .menu-toggle {
     display: none;
@@ -207,13 +291,49 @@ button {
     text-decoration: underline !important;
 }
 
+/* Estilização para mobile sidebar */
+.sidebar .user-type-selector {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 15px;
+}
+
+.sidebar .user-type-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.sidebar .user-type-dropdown {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid var(--dourado);
+    background: var(--rosa-claro);
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.sidebar .user-type-option {
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 0.9rem;
+}
 
 /* Media queries para responsividade */
-@media screen and (max-width: 768px) {
-
-    nav,
+@media screen and (max-width: 980px) {
+    nav {
+        display: none;
+    }
+    
     .Login,
     .login-entrar {
+        display: none;
+    }
+    
+    .user-type-selector {
         display: none;
     }
 
@@ -224,5 +344,9 @@ button {
 
     .header-flex {
         padding: 0;
+    }
+    
+    .sidebar .user-type-selector {
+        display: block;
     }
 }
