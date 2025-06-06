@@ -1,14 +1,3 @@
-/* Variáveis da paleta de cores */
-:root {
-    --cinza: #6d6b6b;
-    --branco: #f6f4f4;
-    --rosa-claro: #efe4ea;
-    --dourado: #e1c081;
-    --bg-header: #efe4ea;
-    --rosa-S-claro: #efe4ea;
-    --dourado-escuro: #f1b84c;
-}
-
 /* Estilização do formulário */
 #formCadastro {
     max-width: 550px;
@@ -73,9 +62,16 @@
     opacity: 0.7;
 }
 
-/* Input válido */
-#formCadastro input:valid {
+/* Input válido - ADAPTADO PARA AS VALIDAÇÕES */
+#formCadastro input.valid {
     border-color: var(--dourado);
+    background: rgba(225, 192, 129, 0.05);
+}
+
+/* Input com erro - ADICIONADO PARA AS VALIDAÇÕES */
+#formCadastro input.error {
+    border-color: #dc3545;
+    background: rgba(220, 53, 69, 0.05);
 }
 
 /* Botão de submit */
@@ -103,6 +99,32 @@
 /* Active do botão */
 #formCadastro button[type="submit"]:active {
     transform: translateY(0);
+}
+
+/* Mensagens de erro - INTEGRADAS COM SUA PALETA */
+.error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.5rem;
+    background: rgba(220, 53, 69, 0.05);
+    border-left: 3px solid #dc3545;
+    border-radius: 3px;
+    display: none;
+}
+
+/* Mensagens de sucesso - INTEGRADAS COM SUA PALETA */
+.success-message {
+    color: var(--dourado-escuro);
+    font-size: 0.85rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.5rem;
+    background: rgba(225, 192, 129, 0.1);
+    border-left: 3px solid var(--dourado);
+    border-radius: 3px;
+    display: none;
 }
 
 /* Mensagem de feedback */
@@ -144,7 +166,7 @@
         max-width: 90%;
         width: 90%;
     }
-    
+
     #mensagem {
         max-width: 90%;
         width: 90%;
@@ -157,13 +179,13 @@
         max-width: 95%;
         width: 95%;
     }
-    
+
     #formCadastro input,
     #formCadastro button[type="submit"] {
         padding: 0.7rem;
         font-size: 0.9rem;
     }
-    
+
     #mensagem {
         max-width: 95%;
         width: 95%;

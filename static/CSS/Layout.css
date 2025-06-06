@@ -7,6 +7,7 @@
     --bg-header: #efe4ea;
     --rosa-S-claro: #efe4ea;
     --dourado-escuro: #f1b84c;
+    --dourado-escuro-saturado: #d4aa5c;
 }
 
 * {
@@ -102,7 +103,7 @@ nav ul li a:hover::after {
 }
 
 .user-type-btn {
-    background: #ffaf38;
+    background: var(--dourado-escuro-saturado);
     color: white;
     border: none;
     padding: 8px 16px;
@@ -119,7 +120,7 @@ nav ul li a:hover::after {
 }
 
 .user-type-btn:hover {
-    background: var(--dourado-escuro);
+    cursor: pointer;
 }
 
 .user-type-btn::after {
