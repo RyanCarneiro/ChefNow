@@ -49,6 +49,19 @@ def criar_conta():
     # Renderiza o template da página de criar conta
     return render_template('Criar-conta.html')
 
+# Rota para a página de perfil do chef
+@app.route('/Perfil-chef')
+def perfil_chef():
+    # Captura os parâmetros da URL
+    chef_id = request.args.get('id')
+    chef_nome = request.args.get('nome')
+    chef_cep = request.args.get('cep')
+    
+    # Renderiza o template passando os dados do chef
+    return render_template('Perfil-chef.html', 
+                         chef_id=chef_id,
+                         chef_nome=chef_nome, 
+                         chef_cep=chef_cep)
 # Rota para buscar chefs próximos baseado no CEP
 @app.route('/chefs-proximos')
 def chefs_proximos():

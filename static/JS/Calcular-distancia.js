@@ -7,7 +7,7 @@ document.querySelector(".cep-button").addEventListener("click", async () => {
   // Seleciona o elemento onde os resultados serão exibidos
   const resultadoLista = document.querySelector(".resultado");
   // Define um raio fixo de 50 para a busca de chefs próximos
-  const raio = 50; // Raio fixo em números de CEPs
+  const raio = 150; // Raio fixo em números de CEPs
 
   // Valida se o CEP tem exatamente 8 dígitos
   if (cepInput.length !== 8) {
@@ -40,8 +40,32 @@ document.querySelector(".cep-button").addEventListener("click", async () => {
     dados.forEach((chef) => {
       // Cria um novo elemento de lista (li)
       const li = document.createElement("li");
-      // Define o conteúdo de texto do elemento com as informações do chef
-      li.textContent = `Nome: ${chef.nome} | CEP: ${chef.cep} `;
+      
+      // Cria um elemento de link (a)
+      const link = document.createElement("a");
+      // Define o texto do link
+      link.textContent = `Nome: ${chef.nome} | CEP: ${chef.cep}`;
+      // Define href como "#" para funcionar como link
+      link.href = "#";
+      // Adiciona estilo de cursor pointer para indicar que é clicável
+      link.style.cursor = "pointer";
+      
+      // Adiciona event listener de clique ao link
+      link.addEventListener("click", (e) => {
+        e.preventDefault(); // Previne o comportamento padrão do link
+        // Constrói a URL usando a base do Flask e parâmetros
+        const url = new URL("/Perfil-chef", window.location.origin);
+        url.searchParams.set('id', chef.id);
+        url.searchParams.set('nome', chef.nome);
+        url.searchParams.set('cep', chef.cep);
+        // Redireciona para a página do perfil do chef
+        window.location.href = url.toString();
+        // Ou para abrir em nova aba:
+        // window.open(url.toString(), '_blank');
+      });
+      
+      // Adiciona o link ao elemento de lista
+      li.appendChild(link);
       // Adiciona o elemento de lista ao container de resultados
       resultadoLista.appendChild(li);
     });
@@ -54,5 +78,4 @@ document.querySelector(".cep-button").addEventListener("click", async () => {
       "Erro ao conectar com o servidor. Verifique se o backend está rodando."
     );
   }
-// Fecha a função assíncrona do event listener
 });
