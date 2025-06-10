@@ -1,11 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perfil do Chef-Emerson</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Perfil-chef.css') }}">
+    <!--  Favicon  -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/ART/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 </head>
+<header>
+    <div class="header-flex">
+        <div class="img"><img src="../static/ART/ChefNow_Logo.png" alt="Logo ChefNow"></div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="">Botão</a></li>
+                <li><a href="#">Botão</a></li>
+                <li><a href="#">Botão</a></li>
+            </ul>
+        </nav>
+
+        <!-- Seletor de tipo de usuário -->
+        <div class="user-type-selector">
+            <button class="user-type-btn" id="userTypeBtn">
+                <span id="selectedType">Usuário</span>
+            </button>
+            <div class="user-type-dropdown" id="userTypeDropdown">
+                <div class="user-type-option selected" data-type="usuário">Usuário</div>
+                <div class="user-type-option" data-type="chef">Chef</div>
+            </div>
+        </div>
+
+        <button class="Login" id="createBtn">Criar Conta</button>
+        <button class="login-entrar" id="loginBtn">Entrar</button>
+
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
 <body>
-    <h1>sdaasdgaklsdgasdklgjbasdgkhb</h1>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="photo-upload-section">
+                <div class="photo-container">
+                    <img id="chefPhoto" class="chef-photo" alt="Foto do Chef">
+                    <div id="photoPlaceholder" class="photo-placeholder">
+                        <img src="../static/ART/login.png" alt="Chef"
+                            class="placeholder-img">
+                    </div>
+                </div>
+                <input type="file" id="photoInput" class="file-input" accept="image/*">
+                <button onclick="document.getElementById('photoInput').click()" class="upload-btn">
+                    Adicionar Foto
+                </button>
+            </div>
+
+            <h1 class="chef-name">Chef Emerson Vitor Souza</h1>
+            <p class="chef-specialty">Especialista em Cookis</p>
+        </div>
+
+        <div class="profile-content">
+            <div class="contact-section">
+                <h2 class="section-title">Informações de Contato</h2>
+
+                <div class="contact-item">
+                    <span class="contact-label">Nome Completo:</span>
+                    <span class="contact-value">Emerson Vitor Souza</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">CEP:</span>
+                    <span class="contact-value">38402324</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">Telefone:</span>
+                    <span class="contact-value">(34) 99880-3282</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">E-mail:</span>
+                    <span class="contact-value">emerson.chef@email.com</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">Disponibilidade:</span>
+                    <span class="contact-value">Terça á Sexta:<br>9:00 ás 12:00</span>
+                </div>
+            </div>
+
+            <div class="dishes-section">
+                <h2 class="section-title">Pratos Especiais</h2>
+
+                <div class="dishes-grid">
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <img src="../static/ART/lasanha.png" alt="Lasanha">
+                        </div>
+                        <h3 class="dish-name">Lasanha da Casa</h3>
+                        <p class="dish-description">Lasanha tradicional com molho bolonhesa caseiro e queijos
+                            selecionados.</p>
+                    </div>
+
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <img src="../static/ART/bife.png" alt="Bife à Parmegiana">
+                        </div>
+                        <h3 class="dish-name">Bife à Parmegiana</h3>
+                        <p class="dish-description">Bife empanado com molho de tomate especial e queijo gratinado.</p>
+                    </div>
+
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <img src="../static/ART/macarrao.png"
+                                alt="Macarrão à Carbonara">
+                        </div>
+                        <h3 class="dish-name">Macarrão à Carbonara</h3>
+                        <p class="dish-description">Macarrão cremoso com bacon, queijo parmesão e pimenta-do-reino  .</p>
+                    </div>
+
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <img src="../static/ART/salmao.png" alt="Salmão Grelhado">
+                        </div>
+                        <h3 class="dish-name">Salmão Grelhado</h3
+                        <p class="dish-description">Filé de salmão grelhado com ervas finas e legumes da estação.</p>
+                    </div>
+
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <img src="../static/ART/bolo-de-cenoura.png" alt="Bolo de Cenoura">
+                        </div>
+                        <h3 class="dish-name">Bolo de Cenoura</h3>
+                        <p class="dish-description">Bolo de cenoura fofinho com cobertura de ganache de chocolate.</p>
+                    </div>
+
+                    <div class="dish-card">
+                        <div class="dish-icon">
+                            <img src="../static/ART/strogonoff.png"
+                                alt="Strogonoff de Frango">
+                        </div>
+                        <h3 class="dish-name">Strogonoff de Frango</h3>
+                        <p class="dish-description">Strogonoff tradicional com frango, creme de leite e champignon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='JS/Efeito.js') }}"></script>
+
 </body>
+
 </html>

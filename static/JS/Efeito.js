@@ -1,37 +1,15 @@
-// JavaScript para funcionalidade do menu lateral
-// Seleciona o elemento botão que abre o menu (hambúrguer)
-const menuToggle = document.getElementById('menu-toggle');
-// Seleciona o elemento da barra lateral (sidebar)
-const sidebar = document.getElementById('sidebar');
-// Seleciona o botão que fecha a sidebar
-const sidebarClose = document.getElementById('sidebar-close');
-
-// Adiciona evento de clique no botão de toggle do menu
-menuToggle.addEventListener('click', () => {
-    // Adiciona a classe 'active' à sidebar para mostrar ela
-    sidebar.classList.add('active');
-    // Remove a barra de rolagem da página para evitar scroll duplo
-    document.body.style.overflow = 'hidden';
-});
-
-// Função para fechar a sidebar
-function closeSidebar() {
-    // Remove a classe 'active' da sidebar para escondê-la
-    sidebar.classList.remove('active');
-    // Restaura a barra de rolagem da página
-    document.body.style.overflow = '';
-}
-
-// Adiciona evento de clique no botão de fechar sidebar
-sidebarClose.addEventListener('click', closeSidebar);
-
-// JavaScript para funcionalidade de seleção de tipo de usuário e redirecionamento
+// JavaScript para funcionalidade completa da página
 // Aguarda o DOM estar completamente carregado antes de executar
 document.addEventListener('DOMContentLoaded', function() {
-    // Variável que armazena o tipo de usuário selecionado (padrão: 'usuário')
-    let selectedUserType = 'usuário';
-    
-    // Elementos desktop
+    // ===== ELEMENTOS DO MENU LATERAL =====
+    // Seleciona o elemento botão que abre o menu (hambúrguer)
+    const menuToggle = document.getElementById('menu-toggle');
+    // Seleciona o elemento da barra lateral (sidebar)
+    const sidebar = document.getElementById('sidebar');
+    // Seleciona o botão que fecha a sidebar
+    const sidebarClose = document.getElementById('sidebar-close');
+
+    // ===== ELEMENTOS DESKTOP =====
     // Botão do dropdown de tipo de usuário (versão desktop)
     const userTypeBtn = document.getElementById('userTypeBtn');
     // Container do dropdown de tipo de usuário (versão desktop)
@@ -43,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Botão de login (versão desktop)
     const loginBtn = document.getElementById('loginBtn');
     
-    // Elementos mobile
+    // ===== ELEMENTOS MOBILE =====
     // Botão do dropdown de tipo de usuário (versão mobile)
     const userTypeBtnMobile = document.getElementById('userTypeBtnMobile');
     // Container do dropdown de tipo de usuário (versão mobile)
@@ -55,13 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Botão de login (versão mobile)
     const loginBtnMobile = document.getElementById('loginBtnMobile');
     
-    // Elementos do menu mobile
-    // Botão hambúrguer para abrir menu mobile (redeclaração)
-    const menuToggle = document.getElementById('menu-toggle');
-    // Sidebar do menu mobile (redeclaração)
-    const sidebar = document.getElementById('sidebar');
-    // Botão para fechar sidebar (redeclaração)
-    const sidebarClose = document.getElementById('sidebar-close');
+    // ===== VARIÁVEL GLOBAL =====
+    // Variável que armazena o tipo de usuário selecionado (padrão: 'usuário')
+    let selectedUserType = 'usuário';
+    
+    // ===== FUNÇÕES =====
+    
+    // Função para fechar a sidebar
+    function closeSidebar() {
+        // Remove a classe 'active' da sidebar para escondê-la
+        if (sidebar) {
+            sidebar.classList.remove('active');
+            // Restaura a barra de rolagem da página
+            document.body.style.overflow = '';
+        }
+    }
     
     // Função para atualizar texto dos botões baseado no tipo de usuário selecionado
     function updateButtonTexts() {
@@ -89,6 +75,15 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             // Caso contrário, redireciona para a página de cadastro de usuário
             window.location.href = '/Criar-conta';
+        }
+    }
+    
+    // Função para redirecionar para login (você precisa implementar)
+    function redirectToLogin() {
+        if (selectedUserType === 'chef') {
+            window.location.href = '/Login-chef'; // Ajuste conforme sua rota
+        } else {
+            window.location.href = '/Login'; // Ajuste conforme sua rota
         }
     }
     
@@ -135,7 +130,27 @@ document.addEventListener('DOMContentLoaded', function() {
         updateButtonTexts();
     }
     
-    // Event listeners para botões de criar conta
+    // ===== EVENT LISTENERS PARA MENU LATERAL =====
+    
+    // Adiciona evento de clique no botão de toggle do menu
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            // Adiciona a classe 'active' à sidebar para mostrar ela
+            if (sidebar) {
+                sidebar.classList.add('active');
+                // Remove a barra de rolagem da página para evitar scroll duplo
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    }
+    
+    // Adiciona evento de clique no botão de fechar sidebar
+    if (sidebarClose) {
+        sidebarClose.addEventListener('click', closeSidebar);
+    }
+    
+    // ===== EVENT LISTENERS PARA BOTÕES DE CRIAR CONTA =====
+    
     // Adiciona evento ao botão criar conta (desktop)
     if (createBtn) {
         createBtn.addEventListener('click', (e) => {
@@ -156,13 +171,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Event listeners para botões de login
+    // ===== EVENT LISTENERS PARA BOTÕES DE LOGIN =====
+    
     // Adiciona evento ao botão login (desktop)
     if (loginBtn) {
         loginBtn.addEventListener('click', (e) => {
             // Previne o comportamento padrão do link/botão
             e.preventDefault();
-            // Chama função de redirecionamento para login (não definida no código)
+            // Chama função de redirecionamento para login
             redirectToLogin();
         });
     }
@@ -172,12 +188,13 @@ document.addEventListener('DOMContentLoaded', function() {
         loginBtnMobile.addEventListener('click', (e) => {
             // Previne o comportamento padrão do link/botão
             e.preventDefault();
-            // Chama função de redirecionamento para login (não definida no código)
+            // Chama função de redirecionamento para login
             redirectToLogin();
         });
     }
     
-    // Event listeners desktop para dropdown
+    // ===== EVENT LISTENERS DESKTOP PARA DROPDOWN =====
+    
     // Adiciona eventos ao dropdown desktop se existir
     if (userTypeBtn && userTypeDropdown) {
         // Evento de clique no botão do dropdown
@@ -198,7 +215,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Event listeners mobile para dropdown
+    // ===== EVENT LISTENERS MOBILE PARA DROPDOWN =====
+    
     // Adiciona eventos ao dropdown mobile se existir
     if (userTypeBtnMobile && userTypeDropdownMobile) {
         // Evento de clique no botão do dropdown mobile
@@ -219,54 +237,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Event listeners para menu mobile
-    // Adiciona evento ao botão hambúrguer se existir
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            // Adiciona classe 'active' à sidebar para mostrar (usa optional chaining)
-            sidebar?.classList.add('active');
-        });
-    }
-    
-    // Adiciona evento ao botão de fechar sidebar se existir
-    if (sidebarClose) {
-        sidebarClose.addEventListener('click', () => {
-            // Remove classe 'active' da sidebar para esconder (usa optional chaining)
-            sidebar?.classList.remove('active');
-        });
-    }
+    // ===== EVENT LISTENERS GLOBAIS =====
     
     // Fechar sidebar ao clicar fora
-    // Adiciona evento de clique em todo o documento
     document.addEventListener('click', (e) => {
         // Verifica se a sidebar existe, está ativa, e o clique foi fora dela e do botão toggle
         if (sidebar && sidebar.classList.contains('active') && 
             !sidebar.contains(e.target) && 
-            !menuToggle.contains(e.target)) {
+            menuToggle && !menuToggle.contains(e.target)) {
             // Remove a classe 'active' para fechar a sidebar
-            sidebar.classList.remove('active');
+            closeSidebar();
         }
     });
     
     // Fechar dropdown ao clicar fora
-    // Adiciona evento de clique em todo o documento
     document.addEventListener('click', () => {
         // Fecha dropdown desktop se existir
         if (userTypeDropdown) {
             userTypeDropdown.classList.remove('show');
             // Remove classe 'active' do botão desktop
-            userTypeBtn?.classList.remove('active');
+            if (userTypeBtn) userTypeBtn.classList.remove('active');
         }
         // Fecha dropdown mobile se existir
         if (userTypeDropdownMobile) {
             userTypeDropdownMobile.classList.remove('show');
             // Remove classe 'active' do botão mobile
-            userTypeBtnMobile?.classList.remove('active');
+            if (userTypeBtnMobile) userTypeBtnMobile.classList.remove('active');
         }
     });
     
+    // ===== INICIALIZAÇÃO =====
+    
     // Inicializar texto dos botões
-    // Chama a função para definir os textos iniciais dos botões
     updateButtonTexts();
+    
 // Fecha a função DOMContentLoaded
 });

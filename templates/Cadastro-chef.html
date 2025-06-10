@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Layout.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Cadastro-chef.css') }}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/ART/favicon-16x16.png" />
-    <meta name="theme-color" content="#ffffff" />
+    <!--  Favicon  -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/ART/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
     <title>Criar Conta</title>
 </head>
 
@@ -75,38 +77,26 @@
 </div>
 
 <body>
-
     <!--  Formulario  -->
     <form id="formCadastro">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="nome" placeholder="Nome" required />
-        <div class="error-message" id="name-error"></div>
-        <div class="success-message" id="name-success"></div>
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="Email" required />
-        <div class="error-message" id="email-error"></div>
-        <div class="success-message" id="email-success"></div>
 
         <label for="password">Senha:</label>
         <input type="password" id="password" name="password" placeholder="Senha" required />
-        <div class="error-message" id="password-error"></div>
-        <div class="success-message" id="password-success"></div>
 
         <label for="cpf">CPF:</label>
         <input type="text" id="cpf" name="cpf" placeholder="CPF" required />
-        <div class="error-message" id="cpf-error"></div>
-        <div class="success-message" id="cpf-success"></div>
+        
 
         <label for="nascimento">Data de nascimento:</label>
         <input type="date" id="nascimento" name="nascimento" required />
-        <div class="error-message" id="nascimento-error"></div>
-        <div class="success-message" id="nascimento-success"></div>
 
         <label for="cep">CEP:</label>
         <input type="text" id="cep" name="cep" required />
-        <div class="error-message" id="cep-error"></div>
-        <div class="success-message" id="cep-success"></div>
 
         <button type="submit">Cadastrar</button>
     </form>
@@ -115,7 +105,6 @@
 
     <script src="{{ url_for('static', filename='JS/Cadastro-chef.js') }}"></script>
     <script src="{{ url_for('static', filename='JS/Efeito.js') }}"></script>
-    <script src="{{ url_for('static', filename='JS/Validacao.js') }}"></script>
 </body>
 
 </html>

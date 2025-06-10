@@ -1,32 +1,27 @@
 # Importa a classe Flask para criar a aplicação web
 from flask import Flask, request, jsonify, render_template
-# Importa CORS para permitir requisições de diferentes origens
-from flask_cors import CORS
 # Importa sqlite3 para trabalhar com banco de dados SQLite
 import sqlite3
 # Importa os para trabalhar com sistema operacional
 import os
-# Importa threading para trabalhar com threads e locks
-import threading
 # Importa hashlib para criptografar senhas
 import hashlib
 
 # Cria uma instância da aplicação Flask
 app = Flask(__name__)
-# Habilita CORS para permitir requisições de qualquer origem
-CORS(app)  # Permite requisições de qualquer origem
 
-# Alternativa manual para CORS (caso não queira usar flask-cors)
-# Decorador que executa após cada requisição
+# Decorador que executa após cada requisição para configurar CORS manualmente
 @app.after_request
 def after_request(response):
     # Adiciona cabeçalho para permitir qualquer origem
     response.headers.add('Access-Control-Allow-Origin', '*')
+    # Adiciona cabeçalhos para permitir métodos HTTP
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    # Adiciona cabeçalhos para permitir métodos específicos
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     # Retorna a resposta modificada
     return response
 
-# Cria um lock para controlar acesso ao banco de dados (thread safety)
-db_bloqueada = threading.Lock()
 # Define o nome do arquivo do banco de dados
 DATABASE = 'Usuarios-ChefNow.sqlite'
 
@@ -52,16 +47,9 @@ def criar_conta():
 # Rota para a página de perfil do chef
 @app.route('/Perfil-chef')
 def perfil_chef():
-    # Captura os parâmetros da URL
-    chef_id = request.args.get('id')
-    chef_nome = request.args.get('nome')
-    chef_cep = request.args.get('cep')
-    
     # Renderiza o template passando os dados do chef
-    return render_template('Perfil-chef.html', 
-                         chef_id=chef_id,
-                         chef_nome=chef_nome, 
-                         chef_cep=chef_cep)
+    return render_template('Perfil-chef.html')
+
 # Rota para buscar chefs próximos baseado no CEP
 @app.route('/chefs-proximos')
 def chefs_proximos():
@@ -77,28 +65,26 @@ def chefs_proximos():
 
     # Bloco try-except para capturar erros
     try:
-        # Usa o lock para acesso seguro ao banco de dados
-        with db_bloqueada:
-            # Conecta ao banco de dados
-            conn = sqlite3.connect(DATABASE)
-            # Cria cursor para executar comandos SQL
-            cursor = conn.cursor()
+        # Conecta ao banco de dados
+        conn = sqlite3.connect(DATABASE)
+        # Cria cursor para executar comandos SQL
+        cursor = conn.cursor()
 
-            # Query SQL para buscar chefs próximos baseado na diferença de CEP
-            query = """
-                SELECT id, nome, email, cep,
-                       ABS(CAST(cep AS INTEGER) - CAST(? AS INTEGER)) AS diferenca
-                FROM chefs
-                WHERE ABS(CAST(cep AS INTEGER) - CAST(? AS INTEGER)) <= ?
-                ORDER BY diferenca ASC;
-            """
+        # Query SQL para buscar chefs próximos baseado na diferença de CEP
+        query = """
+            SELECT id, nome, email, cep,
+                   ABS(CAST(cep AS INTEGER) - CAST(? AS INTEGER)) AS diferenca
+            FROM chefs
+            WHERE ABS(CAST(cep AS INTEGER) - CAST(? AS INTEGER)) <= ?
+            ORDER BY diferenca ASC;
+        """
 
-            # Executa a query com os parâmetros (cep_base, cep_base, raio)
-            cursor.execute(query, (cep_base, cep_base, raio))
-            # Obtém todos os resultados da consulta
-            resultados = cursor.fetchall()
-            # Fecha a conexão com o banco
-            conn.close()
+        # Executa a query com os parâmetros (cep_base, cep_base, raio)
+        cursor.execute(query, (cep_base, cep_base, raio))
+        # Obtém todos os resultados da consulta
+        resultados = cursor.fetchall()
+        # Fecha a conexão com o banco
+        conn.close()
 
         # Lista para armazenar os chefs próximos
         proximos = []
@@ -186,24 +172,22 @@ def enviar():
         # Retorna erro 400 se algum campo estiver vazio
         return jsonify({'success': False, 'msg': 'Preencha todos os campos!'}), 400
 
-    # Hash da senha para segurança usando SHA-256
-    password_hash = hashlib.sha256(password.encode()).hexdigest()
+    # Hash da senha para segurança usando SHA-512
+    password_hash = hashlib.sha512(password.encode()).hexdigest()
 
     # Bloco try-except para capturar erros
     try:
-        # Usa lock para acesso seguro ao banco
-        with db_bloqueada:
-            # Conecta ao banco de dados
-            cursor_sql, conexcao = Conectar_banco_dados()
-            # Executa SQL para inserir novo cliente
-            cursor_sql.execute('''
-                INSERT INTO cliente (nome, email, password, cpf, nascimento)
-                VALUES (?, ?, ?, ?, ?)
-            ''', (nome, email, password_hash, cpf, nascimento))
-            # Confirma a inserção
-            conexcao.commit()
-            # Fecha a conexão
-            conexcao.close()
+        # Conecta ao banco de dados
+        cursor_sql, conexcao = Conectar_banco_dados()
+        # Executa SQL para inserir novo cliente
+        cursor_sql.execute('''
+            INSERT INTO cliente (nome, email, password, cpf, nascimento)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (nome, email, password_hash, cpf, nascimento))
+        # Confirma a inserção
+        conexcao.commit()
+        # Fecha a conexão
+        conexcao.close()
 
         # Retorna sucesso se cadastro foi realizado
         return jsonify({'success': True, 'msg': 'Cadastro realizado com sucesso!'})
@@ -243,24 +227,22 @@ def cadastrar_chef():
         # Retorna erro 400 se CEP for inválido
         return jsonify({'success': False, 'msg': 'CEP deve conter apenas números!'}), 400
 
-    # Hash da senha para segurança usando SHA-256
-    password_hash = hashlib.sha256(password.encode()).hexdigest()
+    # Hash da senha para segurança usando SHA-512
+    password_hash = hashlib.sha512(password.encode()).hexdigest()
 
     # Bloco try-except para capturar erros
     try:
-        # Usa lock para acesso seguro ao banco
-        with db_bloqueada:
-            # Conecta ao banco de dados
-            cursor_sql, conexcao = Conectar_banco_dados()
-            # Executa SQL para inserir novo chef
-            cursor_sql.execute('''
-                INSERT INTO chefs (nome, email, password, cpf, nascimento, cep)
-                VALUES (?, ?, ?, ?, ?, ?)
-            ''', (nome, email, password_hash, cpf, nascimento, cep))
-            # Confirma a inserção
-            conexcao.commit()
-            # Fecha a conexão
-            conexcao.close()
+        # Conecta ao banco de dados
+        cursor_sql, conexcao = Conectar_banco_dados()
+        # Executa SQL para inserir novo chef
+        cursor_sql.execute('''
+            INSERT INTO chefs (nome, email, password, cpf, nascimento, cep)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (nome, email, password_hash, cpf, nascimento, cep))
+        # Confirma a inserção
+        conexcao.commit()
+        # Fecha a conexão
+        conexcao.close()
 
         # Retorna sucesso se cadastro foi realizado
         return jsonify({'success': True, 'msg': 'Chef cadastrado com sucesso!'})
