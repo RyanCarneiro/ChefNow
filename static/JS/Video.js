@@ -1,4 +1,4 @@
-// Adicione isso ao seu arquivo Efeito.js
+
 document.addEventListener('DOMContentLoaded', function() {
     // Verifica se a largura da tela é menor que 768px (dispositivos móveis)
     if (window.innerWidth < 768) {

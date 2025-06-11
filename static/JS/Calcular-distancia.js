@@ -6,7 +6,7 @@ document.querySelector(".cep-button").addEventListener("click", async () => {
     .value.replace(/\D/g, "");
   // Seleciona o elemento onde os resultados serão exibidos
   const resultadoLista = document.querySelector(".resultado");
-  // Define um raio fixo de 50 para a busca de chefs próximos
+  // Define um raio fixo de 150 para a busca de chefs próximos
   const raio = 150; // Raio fixo em números de CEPs
 
   // Valida se o CEP tem exatamente 8 dígitos
@@ -46,22 +46,17 @@ document.querySelector(".cep-button").addEventListener("click", async () => {
       // Define o texto do link
       link.textContent = `Nome: ${chef.nome} | CEP: ${chef.cep}`;
       // Define href como "#" para funcionar como link
-      link.href = "#";
-      // Adiciona estilo de cursor pointer para indicar que é clicável
-      link.style.cursor = "pointer";
+      
+      
       
       // Adiciona event listener de clique ao link
       link.addEventListener("click", (e) => {
         e.preventDefault(); // Previne o comportamento padrão do link
         // Constrói a URL usando a base do Flask e parâmetros
         const url = new URL("/Perfil-chef", window.location.origin);
-        url.searchParams.set('id', chef.id);
-        url.searchParams.set('nome', chef.nome);
-        url.searchParams.set('cep', chef.cep);
         // Redireciona para a página do perfil do chef
         window.location.href = url.toString();
         // Ou para abrir em nova aba:
-        // window.open(url.toString(), '_blank');
       });
       
       // Adiciona o link ao elemento de lista
