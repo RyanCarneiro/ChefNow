@@ -10,6 +10,14 @@ import hashlib
 # Cria uma instância da aplicação Flask
 app = Flask(__name__)
 
+# Decorador que executa após cada requisição para configurar CORS manualmente
+@app.after_request
+def after_request(response):
+    # Adiciona cabeçalho para permitir qualquer origem
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    # Retorna a resposta modificada
+    return response
+
 # Define o nome do arquivo do banco de dados
 DATABASE = 'Usuarios-ChefNow.sqlite'
 
