@@ -156,6 +156,23 @@
         </div>
     </div>
     <script src="{{ url_for('static', filename='JS/Efeito.js') }}"></script>
+        <script>
+        document.getElementById('photoInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const chefPhoto = document.getElementById('chefPhoto');
+                    const placeholder = document.getElementById('photoPlaceholder');
+                    
+                    chefPhoto.src = e.target.result;
+                    chefPhoto.style.display = 'block';
+                    placeholder.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 
 </body>
 

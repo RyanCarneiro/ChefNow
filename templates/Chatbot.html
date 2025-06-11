@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ChatBot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Chatbot.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Layout.css') }}">
+    <!--  Favicon  -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/ART/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <h2>Fale com a IA</h2>
+    <form method="post">
+        <input type="text" name="pergunta" placeholder="Digite sua pergunta" required>
+        <button type="submit">Enviar</button>
+    </form>
+    {% if resposta %}
+    <h3>Resposta:</h3>
+    <p>{{ resposta }}</p>
+    {% endif %}
+</body>
+
+</html>

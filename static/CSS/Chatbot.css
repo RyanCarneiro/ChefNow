@@ -1,0 +1,122 @@
+h2 {
+    text-align: center;
+    color: var(--cinza);
+    font-size: 2.5em;
+    font-weight: 300;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(45deg, var(--dourado), var(--dourado-escuro));
+    border-radius: 2px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    display: flex;
+    gap: 15px;
+    background: var(--branco);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(109, 107, 107, 0.1);
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 18px 25px;
+    border: 2px solid var(--rosa-claro);
+    border-radius: 50px;
+    font-size: 16px;
+    background: var(--branco);
+    color: var(--cinza);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: var(--dourado);
+    box-shadow: 0 0 0 3px rgba(225, 192, 129, 0.2);
+    transform: translateY(-2px);
+}
+
+input[type="text"]::placeholder {
+    color: rgba(109, 107, 107, 0.6);
+}
+
+button {
+    padding: 18px 35px;
+    background: linear-gradient(45deg, var(--dourado), var(--dourado-escuro));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(225, 192, 129, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(45deg, var(--dourado-escuro), var(--dourado-escuro-saturado));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(225, 192, 129, 0.4);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+h3 {
+    max-width: 600px;
+    margin: 0 auto 15px;
+    color: var(--cinza);
+    font-size: 1.3em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h3::before {
+    content: '🤖';
+    font-size: 1.2em;
+}
+
+p {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--rosa-S-claro);
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 4px solid var(--dourado);
+    color: var(--cinza);
+    line-height: 1.6;
+    font-size: 16px;
+    box-shadow: 0 5px 20px rgba(109, 107, 107, 0.08);
+    animation: fadeIn 0.5s ease-in;
+}
+
+@media (max-width: 600px) {
+    form {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    input[type="text"],
+    button {
+        padding: 15px 20px;
+    }
+}
