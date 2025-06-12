@@ -1,3 +1,7 @@
+.voltar{
+    max-width: 50px;
+    height: auto;
+}
 h2 {
     text-align: center;
     color: var(--cinza);
@@ -87,7 +91,7 @@ h3 {
 }
 
 h3::before {
-    content: '🤖';
+    content: '👩‍🍳';
     font-size: 1.2em;
 }
 

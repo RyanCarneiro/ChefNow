@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # Configuração da API Hugging Face
 API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
-HF_TOKEN = "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"  # Substitua pela sua chave real
+HF_TOKEN = "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"  # Substitua pela sua chave real
 
 headers = {
     "Authorization": f"Bearer {HF_TOKEN}",
