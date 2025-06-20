@@ -1,4 +1,5 @@
 # Imports para Flask e funcionalidades básicas
+import threading
 from flask import Flask, request, jsonify, render_template
 import sqlite3
 import os
@@ -13,7 +14,7 @@ app = Flask(__name__)
 # Configuração da API Hugging Face
 API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
 HF_TOKEN = "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"  # Substitua pela sua chave real
-
+db_lock = threading.Lock()
 headers = {
     "Authorization": f"Bearer {HF_TOKEN}",
     "Content-Type": "application/json"
@@ -122,6 +123,7 @@ def chefs_proximos():
 def Conectar_banco_dados():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
+
     return cursor, conn
 
 def criar_banco_dados():
@@ -167,13 +169,15 @@ def enviar():
     password_hash = hashlib.sha512(password.encode()).hexdigest()
 
     try:
-        cursor_sql, conexcao = Conectar_banco_dados()
-        cursor_sql.execute('''
-            INSERT INTO cliente (nome, email, password, cpf, nascimento)
-            VALUES (?, ?, ?, ?, ?)
-        ''', (nome, email, password_hash, cpf, nascimento))
-        conexcao.commit()
-        conexcao.close()
+        with db_lock:
+            cursor_sql, conexcao = Conectar_banco_dados()
+            print("ente")
+            cursor_sql.execute('''
+                INSERT INTO cliente (nome, email, password, cpf, nascimento)
+                VALUES (?, ?, ?, ?, ?)
+            ''', (nome, email, password_hash, cpf, nascimento))
+            conexcao.commit()
+            conexcao.close()
 
         return jsonify({'success': True, 'msg': 'Cadastro realizado com sucesso!'})
     
@@ -203,13 +207,14 @@ def cadastrar_chef():
     password_hash = hashlib.sha512(password.encode()).hexdigest()
 
     try:
-        cursor_sql, conexcao = Conectar_banco_dados()
-        cursor_sql.execute('''
-            INSERT INTO chefs (nome, email, password, cpf, nascimento, cep)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (nome, email, password_hash, cpf, nascimento, cep))
-        conexcao.commit()
-        conexcao.close()
+        with db_lock:
+            cursor_sql, conexcao = Conectar_banco_dados()
+            cursor_sql.execute('''
+                INSERT INTO chefs (nome, email, password, cpf, nascimento, cep)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ''', (nome, email, password_hash, cpf, nascimento, cep))
+            conexcao.commit()
+            conexcao.close()
 
         return jsonify({'success': True, 'msg': 'Chef cadastrado com sucesso!'})
     
