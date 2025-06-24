@@ -28,7 +28,7 @@ JWT_SECRET = 'qTLzPaVdyNjMPM+Z3d38N9hV0a3f0WeGblcPjJTA6UOmujDsXxgFcDhF6F1k9x7A2c
 
 # Configuração da API Hugging Face (para o chatbot)
 API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
-HF_TOKEN = "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"  # Token da API
+HF_TOKEN = "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"  # Token da API
 
 # Lock para evitar problemas quando múltiplas pessoas acessam o banco ao mesmo tempo
 db_lock = threading.Lock()
@@ -263,8 +263,7 @@ def Chatbot():
 # ============================
 
 @app.route('/chefs-proximos')
-@token_required  # Só usuários logados podem buscar chefs
-def chefs_proximos(current_user):
+def chefs_proximos():
     # Pega o CEP base e raio de busca dos parâmetros da URL
     cep_base = request.args.get('cep')
     raio = int(request.args.get('raio', 50))  # padrão: 50km

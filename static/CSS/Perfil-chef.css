@@ -47,8 +47,8 @@
 }
 
 .placeholder-img {
-    width: 300px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     filter: sepia(1) hue-rotate(30deg) saturate(0.8);
 }
 
