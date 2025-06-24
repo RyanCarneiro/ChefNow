@@ -28,7 +28,7 @@ JWT_SECRET = 'qTLzPaVdyNjMPM+Z3d38N9hV0a3f0WeGblcPjJTA6UOmujDsXxgFcDhF6F1k9x7A2c
 
 # Configuração da API Hugging Face (para o chatbot)
 API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
-HF_TOKEN = "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"  # Token da API
+HF_TOKEN = ""  # Token da API
 
 # Lock para evitar problemas quando múltiplas pessoas acessam o banco ao mesmo tempo
 db_lock = threading.Lock()
